@@ -1,0 +1,76 @@
+; 
+; Topology file for BK3 model
+;
+;
+[ defaults ]
+; nbfunc    comb-rule    gen-pairs    fudgeLJ    fudgeQQ
+  2               2             no                 1.0  1.0
+
+
+[ atomtypes ]
+
+WO      8       15.99940      0.000000    A       0.0      0.0    0.0           
+WH      1       1.00800       0.000000    A       0.0      0.0    0.0
+WM      0       0.0           0.000000    D       0.0      0.0    0.0
+GM      0       0.0           0.000000    S       0.0      0.0    0.0
+GH      0       0.0           0.000000    S       0.0      0.0    0.0
+
+[ nonbond_params ] 
+
+WO    WO      2     322000   35.6    .003320
+
+[ moleculetype ]
+; molname    nrexcl
+SOL        3
+
+[ atoms ]
+; id    attype  resnr   residuname   atname     cgnr  charge     mass  atB       qB       mB      gauss 
+1       WO         1        SOL        OW1       1    0.0     15.99940  WO      0.0   15.99940   0.0   
+2       WH         1        SOL        HW2       1    0.000    1.00800  WH      0.0    1.00800   0.0 
+3       WH         1        SOL        HW3       1    0.000    1.00800  WH      0.0    1.00800   0.0
+4       WM         1        SOL         MW       1    0.000    0.00000  WM      0.000  0.00000   0.0 
+5       GM         1        SOL         GM       1   -1.168    0.00000  GM     -1.168  0.00000   0.071
+6       GH         1        SOL        GH1       1    0.584    0.00000  GH      0.584  0.00000   0.040
+7       GH         1        SOL        GH2       1    0.584    0.00000  GH      0.584  0.00000   0.040
+
+[ polarization ]
+;;                       alpha (nm^3)
+ 4  5       1  0.00072 
+ 2  6       1  0.00036 
+ 3  7       1  0.00036 
+
+[ settles ]
+1    1    0.097500       0.154184466880
+
+[ dummies3 ]
+; The position of the dummies is computed as follows:
+;
+;        O
+;            
+;        D
+;      
+;    H        H
+;
+; 2 * b = distance (OD) / [ cos (angle(DOH))     * distance (OH) ]
+;
+; Dummy pos x4 = x1 + a*(x2-x1) + b*(x3-X1)
+;
+; Dummy from            funct    a        b
+4    1    2    3    1    0.222947493    0.222947493
+
+[ exclusions ]
+; iatom excluded from interaction with i
+1    2    3    4   5 6 7 
+2    1    3    4   5 6 7 
+3    1    2    4   5 6 7 
+4    1    2    3   5 6 7 
+5    1    2    3   4 6 7
+6    1    2    3   4 5 7
+7    1    2    3   4 5 6
+;1    2    3    4   
+;2    1    3    4   
+;3    1    2    4   
+;4    1    2    3   
+;
+;
+;

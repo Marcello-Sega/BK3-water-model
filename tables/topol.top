@@ -1,0 +1,7 @@
+#include "./bk3.itp"
+
+[ system ]
+BK3 water
+
+[ molecules ]
+SOL      512
